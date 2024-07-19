@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "src/NFTCollection.sol";
-import "forge-std/Script.sol";
+import "forge-std/Script.sol"; // Import Foundry VM library
+import "../src/NFTCollection.sol";
 
-contract DeployNFTCollection is Script {
+contract Deploy is Script {
     function run() external {
         vm.startBroadcast();
-        new NFTCollection("MyNFTCollection", "MNFT", "ipfs://baseURI/", msg.sender);
+        new NFTCollection("My NFT Collection", "MNFT", "ipfs://baseURI/", msg.sender);
         vm.stopBroadcast();
     }
 }

@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "@pinata/sdk": "^2.1.0"
+    "@pinata/sdk": "^2.1.0",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
+    "axios": "^1.7.2",
+    "ethers": "^6.13.1",
+    "wagmi": "^2.11.2"
   }
 }
