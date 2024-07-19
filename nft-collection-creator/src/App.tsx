@@ -12,7 +12,10 @@ const App: React.FC = () => {
   const { disconnect } = useDisconnect();
   const [ipfsUrls, setIpfsUrls] = useState<string[]>([]);
   const [collectionAddress, setCollectionAddress] = useState<string>('');
-  const { mintNFT } = useNFTCollection(collectionAddress);
+  const [collectionName, setCollectionName] = useState<string>('');
+  const [collectionSymbol, setCollectionSymbol] = useState<string>('');
+  const [baseURI, setBaseURI] = useState<string>('');
+  const { deployNFTCollection, mintNFT, contractAddress } = useNFTCollection();
   const [mintedNFTs, setMintedNFTs] = useState<string[]>([]);
 
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +44,14 @@ const App: React.FC = () => {
     }
   };
 
+  const handleDeploy = async (name: string, symbol: string, baseURI: string) => {
+    try {
+      await deployNFTCollection(name, symbol, baseURI);
+    } catch (error) {
+      console.error('Deploying NFT Collection failed:', error);
+    }
+  };
+
   useEffect(() => {
     console.log('Minted NFTs:', mintedNFTs);
   }, [mintedNFTs]);
@@ -56,18 +67,39 @@ const App: React.FC = () => {
       <input type="file" onChange={handleUpload} multiple />
       <input
         type="text"
-        placeholder="Contract Address"
-        value={collectionAddress}
-        onChange={(e) => setCollectionAddress(e.target.value)}
+        placeholder="Collection Name"
+        value={collectionName}
+        onChange={(e) => setCollectionName(e.target.value)}
       />
-      <div>
-        {ipfsUrls.map((url, index) => (
-          <div key={index}>
-            <img src={`https://ipfs.io/ipfs/${url}`} alt="NFT" />
-            <button onClick={() => handleMint(url)}>Mint NFT</button>
-          </div>
-        ))}
-      </div>
+      <input
+        type="text"
+        placeholder="Collection Symbol"
+        value={collectionSymbol}
+        onChange={(e) => setCollectionSymbol(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Base URI"
+        value={baseURI}
+        onChange={(e) => setBaseURI(e.target.value)}
+      />
+      <button onClick={() => handleDeploy(collectionName, collectionSymbol, baseURI)}>Deploy NFT Collection</button>
+      {contractAddress && (
+        <div>
+          <input
+            type="text"
+            placeholder="Mint to Address"
+            value={collectionAddress}
+            onChange={(e) => setCollectionAddress(e.target.value)}
+          />
+          {ipfsUrls.map((url, index) => (
+            <div key={index}>
+              <img src={`https://ipfs.io/ipfs/${url}`} alt="NFT" />
+              <button onClick={() => handleMint(url)}>Mint NFT</button>
+            </div>
+          ))}
+        </div>
+      )}
       <h2>Minted NFTs</h2>
       <div>
         {mintedNFTs.map((url, index) => (
