@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Web3Modal } from '@web3modal/react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import useNFTCollection from './hooks/useNFTCollection';
+import { uploadToPinata } from './utils/pinata';
 
 const App: React.FC = () => {
     const { address, isConnected } = useAccount();
@@ -12,7 +13,15 @@ const App: React.FC = () => {
     const { mintNFT } = useNFTCollection(collectionAddress);
 
     const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        // Handle file upload to Pinata and set IPFS URLs
+        const files = event.target.files;
+        if (!files) return;
+
+        const uploadedUrls = [];
+        for (const file of Array.from(files)) {
+            const result = await uploadToPinata(file);
+            uploadedUrls.push(result.IpfsHash);
+        }
+        setIpfsUrls(uploadedUrls);
     };
 
     const handleMint = async (ipfsUrl: string) => {
