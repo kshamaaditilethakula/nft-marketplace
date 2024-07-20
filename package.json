@@ -1,10 +1,77 @@
 {
+  "name": "nft_marketplace",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@emotion/react": "^11.12.0",
+    "@emotion/styled": "^11.12.0",
+    "@fleek-platform/cli": "^2.8.6",
+    "@mui/material": "^5.16.4",
     "@pinata/sdk": "^2.1.0",
+    "@tanstack/react-query": "^5.51.1",
+    "@types/node": "^16.18.101",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@web3modal/ethereum": "^2.7.1",
     "@web3modal/react": "^2.7.1",
+    "assert": "^2.1.0",
     "axios": "^1.7.2",
-    "ethers": "^6.13.1",
-    "wagmi": "^2.11.2"
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "ethers": "^5.7.2",
+    "formik": "^2.4.6",
+    "https-browserify": "^1.0.0",
+    "ipfs-http-client": "^60.0.1",
+    "os-browserify": "^0.3.0",
+    "process": "^0.11.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "tty-browserify": "^0.0.1",
+    "url": "^0.11.3",
+    "viem": "^2.17.4",
+    "wagmi": "^0.10.15",
+    "web-vitals": "^4.2.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
+    "react-app-rewired": "^2.2.1",
+    "typescript": "^5.5.3"
+  },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
