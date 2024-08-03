@@ -159,6 +159,9 @@ const GovernanceUI: React.FC<GovernanceUIProps> = ({ governorAddress, nftContrac
       <Typography variant="h6" gutterBottom>
         Active Proposals
       </Typography>
+      <Button variant="outlined" onClick={fetchProposals} disabled={loading}>
+        Fetch Proposals
+      </Button>
 
       {loading && <CircularProgress />}
 
